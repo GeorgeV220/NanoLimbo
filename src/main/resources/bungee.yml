@@ -1,0 +1,4 @@
+name: NanoLimbo
+main: ua.nanit.limbo.plugin.bungee.NanoLimbo
+version: ${version}
+author: GeorgeV220

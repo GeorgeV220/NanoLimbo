@@ -2,6 +2,9 @@ plugins {
     id 'java'
     id 'com.github.johnrengelman.shadow' version '7.1.2'
     id 'com.github.gmazzo.buildconfig' version '3.1.0'
+    id "xyz.jpenilla.run-velocity" version "2.2.0"
+    id "xyz.jpenilla.run-waterfall" version "2.2.0"
+    id "net.kyori.blossom" version "1.3.1"
 }
 
 group 'ua.nanit'
@@ -12,17 +15,22 @@ compileJava {
 }
 
 tasks.withType(JavaCompile).configureEach {
-    sourceCompatibility = JavaVersion.VERSION_1_8
-    targetCompatibility = JavaVersion.VERSION_1_8
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
 }
 
 repositories {
     mavenCentral()
+    maven { url = uri("https://repo.papermc.io/repository/maven-public/") }
+    maven { url = uri("https://repo.georgev22.com/snapshots/") }
+    maven { url = uri("https://repo.georgev22.com/releases/") }
+    maven { url = uri('https://oss.sonatype.org/content/repositories/snapshots') }
 }
 
 dependencies {
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.9.3'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.9.3'
+    compileOnly 'net.md-5:bungeecord-api:1.19-R0.1-SNAPSHOT'
+    compileOnly "com.velocitypowered:velocity-api:3.3.0-SNAPSHOT"
+    annotationProcessor 'com.velocitypowered:velocity-api:3.3.0-SNAPSHOT'
 
     implementation 'ch.qos.logback:logback-classic:1.5.6'
     implementation 'org.spongepowered:configurate-yaml:4.1.2'
@@ -30,6 +38,9 @@ dependencies {
     implementation 'net.kyori:adventure-nbt:4.14.0'
     implementation 'com.grack:nanojson:1.8'
     implementation 'com.google.code.gson:gson:2.10.1'
+    implementation "co.aikar:acf-velocity:0.5.1-G-4.0-SNAPSHOT"
+    implementation "co.aikar:acf-bungee:0.5.1-G-4.0-SNAPSHOT"
+    implementation "com.georgev22.library:yaml:11.12.0"
 }
 
 buildConfig {
@@ -40,9 +51,12 @@ buildConfig {
 
 shadowJar {
     from 'LICENSE'
+    relocate 'net.kyori.nbt', 'ua.nanit.limbo.kyori.nbt'
+    relocate 'com.georgev22.library', 'ua.nanit.limbo.georgev22.library'
+    relocate 'org.yaml.snakeyaml', 'ua.nanit.limbo.snakeyaml'
 
     manifest {
-        attributes('Main-Class': 'ua.nanit.limbo.NanoLimbo')
+        attributes('Main-Class': 'ua.nanit.limbo.standalone.NanoLimbo')
     }
 
     minimize {
@@ -50,6 +64,29 @@ shadowJar {
     }
 }
 
+processResources {
+    filesMatching('**.yml') {
+        project.properties.put("version", this.version)
+        expand project.properties
+        filteringCharset 'UTF-8'
+        expand project.properties
+    }
+}
+
 test {
     useJUnitPlatform()
+}
+
+tasks {
+    runVelocity {
+        velocityVersion("3.3.0-SNAPSHOT")
+    }
+    runWaterfall {
+        waterfallVersion("1.20")
+    }
+}
+
+blossom {
+    var velocityConstants = "src/main/java/ua/nanit/limbo/plugin/velocity/NanoLimbo.java"
+    replaceToken('${version}', "${project.version}", velocityConstants)
 }
