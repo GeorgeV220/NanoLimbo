@@ -8,7 +8,7 @@ plugins {
 }
 
 group 'ru.nanit'
-version '1.7'
+version '1.8'
 
 compileJava {
     options.encoding = "UTF-8"
@@ -50,12 +50,12 @@ buildConfig {
 
 shadowJar {
     from 'LICENSE'
-    relocate 'net.kyori.nbt', 'ua.nanit.limbo.kyori.nbt'
-    relocate 'com.georgev22.library', 'ua.nanit.limbo.georgev22.library'
-    relocate 'org.yaml.snakeyaml', 'ua.nanit.limbo.snakeyaml'
+    relocate 'net.kyori.nbt', 'com.georgev22.limbo.kyori.nbt'
+    relocate 'com.georgev22.library', 'com.georgev22.limbo.library'
+    relocate 'org.yaml.snakeyaml', 'com.georgev22.limbo.snakeyaml'
 
     manifest {
-        attributes('Main-Class': 'ua.nanit.limbo.standalone.NanoLimbo')
+        attributes('Main-Class': 'ua.nanit.limbo.NanoLimbo')
     }
 
     minimize()
@@ -84,6 +84,6 @@ tasks {
 }
 
 blossom {
-    var velocityConstants = "src/main/java/ua/nanit/limbo/plugin/velocity/NanoLimbo.java"
+    var velocityConstants = "src/main/java/com/georgev22/limbo/plugin/velocity/NanoLimbo.java"
     replaceToken('${version}', "${project.version}", velocityConstants)
 }

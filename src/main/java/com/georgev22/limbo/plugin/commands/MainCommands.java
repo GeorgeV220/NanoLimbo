@@ -1,4 +1,4 @@
-package ua.nanit.limbo.plugin;
+package com.georgev22.limbo.plugin.commands;
 
 import co.aikar.commands.BaseCommand;
 import co.aikar.commands.CommandIssuer;

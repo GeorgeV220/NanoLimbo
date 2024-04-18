@@ -1,4 +1,4 @@
-package ua.nanit.limbo.plugin.velocity;
+package com.georgev22.limbo.plugin.velocity;
 
 import co.aikar.commands.VelocityCommandManager;
 import com.velocitypowered.api.event.Subscribe;
@@ -12,7 +12,7 @@ import javax.inject.Inject;
 
 import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
-import ua.nanit.limbo.plugin.MainCommands;
+import com.georgev22.limbo.plugin.commands.MainCommands;
 import ua.nanit.limbo.server.LimboServer;
 
 import java.nio.file.Path;

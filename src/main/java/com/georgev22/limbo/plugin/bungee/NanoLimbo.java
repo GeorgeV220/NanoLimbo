@@ -1,8 +1,8 @@
-package ua.nanit.limbo.plugin.bungee;
+package com.georgev22.limbo.plugin.bungee;
 
 import co.aikar.commands.BungeeCommandManager;
+import com.georgev22.limbo.plugin.commands.MainCommands;
 import net.md_5.bungee.api.plugin.Plugin;
-import ua.nanit.limbo.plugin.MainCommands;
 import ua.nanit.limbo.server.LimboServer;
 
 public class NanoLimbo extends Plugin {
