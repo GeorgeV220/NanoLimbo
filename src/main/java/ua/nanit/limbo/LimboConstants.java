@@ -15,21 +15,13 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package ua.nanit.limbo.standalone;
+package ua.nanit.limbo;
 
-import ua.nanit.limbo.server.LimboServer;
-import ua.nanit.limbo.server.Logger;
+public final class LimboConstants {
 
-import java.nio.file.Paths;
+    public static final String VELOCITY_INFO_CHANNEL = "velocity:player_info";
+    public static final String BRAND_CHANNEL = "minecraft:brand";
 
-public final class NanoLimbo {
-
-    public static void main(String[] args) {
-        try {
-            new LimboServer().start(Paths.get("./"));
-        } catch (Exception e) {
-            Logger.error("Cannot start server: ", e);
-        }
-    }
+    private LimboConstants() {}
 
 }

@@ -17,7 +17,7 @@
 
 package ua.nanit.limbo.connection;
 
-import ua.nanit.limbo.util.LimboConstants;
+import ua.nanit.limbo.LimboConstants;
 import ua.nanit.limbo.protocol.PacketSnapshot;
 import ua.nanit.limbo.protocol.packets.configuration.PacketFinishConfiguration;
 import ua.nanit.limbo.protocol.packets.configuration.PacketRegistryData;
