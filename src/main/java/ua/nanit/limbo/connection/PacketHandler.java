@@ -18,7 +18,7 @@
 package ua.nanit.limbo.connection;
 
 import io.netty.buffer.Unpooled;
-import ua.nanit.limbo.util.LimboConstants;
+import ua.nanit.limbo.LimboConstants;
 import ua.nanit.limbo.protocol.packets.PacketHandshake;
 import ua.nanit.limbo.protocol.packets.configuration.PacketFinishConfiguration;
 import ua.nanit.limbo.protocol.packets.login.PacketLoginAcknowledged;
