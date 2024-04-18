@@ -87,6 +87,6 @@ tasks {
 }
 
 blossom {
-    var velocityConstants = "src/main/java/ua/nanit/limbo/plugin/velocity/NanoLimbo.java"
+    var velocityConstants = "src/main/java/com/georgev22/limbo/plugin/velocity/NanoLimbo.java"
     replaceToken('${version}', "${project.version}", velocityConstants)
 }
